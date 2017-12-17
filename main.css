@@ -1,0 +1,26 @@
+body {
+    background-color: rgba(24, 24, 24, .5);
+    color: #fff;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+}
+
+#text {	
+	font-size : 50px;
+}
+
+#area {
+    -webkit-app-region: no-drag;	
+}
+
+#box {
+	font-size : 20px;
+}
+
+.words {
+}
+
+.word {
+	float:left;
+	margin-right: 20px;
+}

@@ -1,0 +1,5 @@
+type : runtime
+
+entrypoint: node server.js
+
+http_proxy: 7140

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="./main.css" rel="stylesheet">
+	<title>Electron Read US</title>
+	<script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="./app.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script>
+		function init() {
+			for(let i = 1; i <= 100; i++) {
+				var el = document.createElement("option");
+				el.value = i;
+				el.innerHTML = i + "個出力";
+				document.getElementById("selector").appendChild(el);				
+			}
+		}
+		function create() {
+			getWiki();
+		};
+		function start(fileName) {
+			console.log(document.getElementById("selector").value);
+			select(fileName, document.getElementById("selector").value, function(data) {
+				var div_element = document.createElement("div");
+
+				div_element.id = "box";
+				div_element.class = "words";
+				div_element.innerHTML = "";
+				data.forEach(function(it){	
+					div_element.innerHTML += '<div class="word"><b>' + it + "</b></div>";
+				});
+				var parent_object = document.getElementById("insert");
+				while (parent_object.firstChild) parent_object.removeChild(parent_object.firstChild);
+				parent_object.appendChild(div_element);
+			});
+		};
+	</script>
+</head>
+<body>
+	<div id="text">
+		<p1>
+			Theme Selector
+			<a href="http://www.goo.ne.jp/">
+				<img src="http://u.xgoo.jp/img/sgoo.png" alt="supported by goo" title="supported by goo" width=100>
+			</a>
+		</p1>
+	</div>
+	<div id="area">		
+		<button type="button" onclick="create()">お題生成</button>
+		<button type="button" onclick="duplicationDelete()">重複消去</button>
+		<button type="button" onclick="start(NOUN_FILE)">名詞発表</button>
+		<button type="button" onclick="start(ONOMASTIC_FILE)">固有名詞発表</button>
+		<button type="button" onclick="start(EPITHET_FILE)">形容詞発表</button>
+		<button type="button" onclick="start(ALL_FILE)">一般発表</button>
+		<select name="list" id="selector">
+		</select>
+	</div>
+	<div id="insert">
+		
+	</div>
+	<script>init();</script>
+</body>
+</html>
